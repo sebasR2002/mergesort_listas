@@ -95,8 +95,24 @@ public class ListaSimple<T> implements Iterable<T> {
      */
 
     /** Remueve el ultimo elemento de la lista */
-    public T removeLast() {
-        return null;
+    public T removeLast() throws Exception {
+        T item = null;
+        int cont = 0;
+        Nodo x = new Nodo();
+        if (last != null) {
+            while (cont < n) {
+                if (cont == n - 2) {
+                    item = x.sig.item;
+                    x.sig = null;
+                    return item;
+                } else {
+                    x = x.sig;
+                    cont++;
+                }
+            }
+        } else
+            throw new Exception("lista vacia");
+        return item;
     }
 
     /** Agregar un elemento al final de la lista */
@@ -135,28 +151,63 @@ public class ListaSimple<T> implements Iterable<T> {
         int cont = 0;
         Nodo nuevo = new Nodo();
         Nodo x = new Nodo();
+        nuevo.item = dato;
         x = first;
-        while (cont <= i - 1) {
-            if (cont == i - 1) {
-                nuevo.sig = x.sig;
-                x.sig = nuevo;
-                n++;
-            } else {
-                x = x.sig;
-                cont++;
-            }
-
+        if (i == 0) {
+            addHead(dato);
+            return;
         }
+        if (i == n - 1) {
+            addLast(dato);
+            return;
+        }
+        if (i < n && i >= 0) {
+
+            while (cont <= i - 1) {
+                if (cont == i - 1) {
+                    nuevo.sig = x.sig;
+                    x.sig = nuevo;
+                } else {
+                    x = x.sig;
+                    cont++;
+                }
+
+            }
+        } else
+            throw new Exception("posicion fuera de rango");
     }
 
     /** remueve el item de la i-ésima posición de la lista */
-    public T remove(int i) {
-        return null;
+    public T remove(int i) throws Exception {
+        int cont = 0;
+        Nodo x = new Nodo();
+        x = first;
+        T item = null;
+        if (i < n && i >= 0) {
+
+            while (cont <= i - 1) {
+                if (cont == i - 1) {
+                    item = x.sig.item;
+                    x.sig = x.sig.sig;
+
+                } else {
+                    x = x.sig;
+                    cont++;
+                }
+
+            }
+            return item;
+        } else
+            throw new Exception("posicion fuera de rango");
     }
 
     /** Obtener una nueva ListaSimple con todos los items en orden inverso */
-    public ListaSimple<T> invert() {
-        return null;
+    public ListaSimple<T> invert() throws Exception {
+        ListaSimple<T> x = new ListaSimple<T>();
+        for (int i = 0; i < n; i++) {
+            x.addHead(get(i));
+        }
+        return x;
     }
 
     /** Dividir una lista en dos mitades */
