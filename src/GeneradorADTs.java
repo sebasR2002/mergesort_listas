@@ -1,4 +1,3 @@
-package upb.ea.ea04_MétodosDeOrdenación;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -74,7 +73,8 @@ public class GeneradorADTs {
             }
             String apellido1 = apellidos[StdRandom.uniform(apellidos.length)];
             String apellido2 = apellidos[StdRandom.uniform(apellidos.length)];
-            Person p = new Person(nombre1+" "+nombre2, apellido1+" "+apellido2, StdRandom.uniform(0, 80), (float) StdRandom.uniform(2.0, 100.0));
+            Person p = new Person(nombre1 + " " + nombre2, apellido1 + " " + apellido2, StdRandom.uniform(0, 80),
+                    (float) StdRandom.uniform(2.0, 100.0));
             personas.add(p);
         }
         return personas;
@@ -87,11 +87,11 @@ public class GeneradorADTs {
             StdOut.println(p);
 
         // TODO: Fix handling of UTF-8 characters in Windows
-        String test ="привет"; 
+        String test = "привет";
         System.out.println(test);
-        String test2 = new String( test.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_16);
+        String test2 = new String(test.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_16);
         System.out.println(test2);
-        String test3 = new String( StandardCharsets.UTF_8.encode(test).array(), StandardCharsets.UTF_16);
+        String test3 = new String(StandardCharsets.UTF_8.encode(test).array(), StandardCharsets.UTF_16);
         System.out.println(test3);
 
     }

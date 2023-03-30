@@ -1,4 +1,3 @@
-package upb.ea.ea04_MétodosDeOrdenación;
 
 import java.text.DecimalFormat;
 
@@ -33,7 +32,7 @@ class Person implements Comparable<Person> {
     }
 
     public String toString() {
-        return nombres+" "+apellidos+" : "+edad+", "+df.format(peso);
+        return nombres + " " + apellidos + " : " + edad + ", " + df.format(peso);
     }
 
     @Override
@@ -41,7 +40,7 @@ class Person implements Comparable<Person> {
         // TODO Auto-generated method stub
         return 0;
     }
-    
+
     private static final DecimalFormat df = new DecimalFormat();
     {
         df.setMaximumFractionDigits(2);
