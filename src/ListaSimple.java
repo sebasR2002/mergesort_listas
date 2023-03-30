@@ -104,15 +104,17 @@ public class ListaSimple<T> implements Iterable<T> {
                 if (cont == n - 2) {
                     item = x.sig.item;
                     x.sig = null;
-                    return item;
+                    n--;
+
                 } else {
                     x = x.sig;
                     cont++;
                 }
             }
+            return item;
         } else
             throw new Exception("lista vacia");
-        return item;
+
     }
 
     /** Agregar un elemento al final de la lista */
@@ -122,6 +124,8 @@ public class ListaSimple<T> implements Iterable<T> {
         x.sig = null;
         last.sig = x;
         x = last;
+        if (first == null)
+            first = last;
 
         n++;
     }
@@ -189,6 +193,7 @@ public class ListaSimple<T> implements Iterable<T> {
                 if (cont == i - 1) {
                     item = x.sig.item;
                     x.sig = x.sig.sig;
+                    n--;
 
                 } else {
                     x = x.sig;
@@ -211,7 +216,15 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** Dividir una lista en dos mitades */
-    public ListaSimple<T>[] splitList() {
-        return null;
+    public ListaSimple<T>[] splitList() throws Exception {
+        ListaSimple<T>[] split = new ListaSimple[2];
+        int div = (n - 1) / 2;
+        for (int i = 0; i <= div; i++) {
+            split[0].addLast(get(i));
+        }
+        for (int i = 0; i > div && i < n; i++) {
+            split[1].addHead(get(i));
+        }
+        return split;
     }
 }
