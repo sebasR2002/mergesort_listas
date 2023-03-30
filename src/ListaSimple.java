@@ -1,13 +1,13 @@
 import java.util.Iterator;
 import edu.princeton.cs.algs4.*;
 
-public class ListaSimple<T> implements Iterable<T> {
+public class ListaSimple<Comparable> implements Iterable<Comparable> {
 
     /**
      * Nodo representa un nodo de la lista simplemente enlazada
      */
     private class Nodo {
-        T item;
+        Comparable item;
         Nodo sig;
     }
 
@@ -20,7 +20,7 @@ public class ListaSimple<T> implements Iterable<T> {
      * 
      * @param item
      */
-    public void addHead(T item) {
+    public void addHead(Comparable item) {
 
         Nodo x = new Nodo();
         x.item = item;
@@ -37,10 +37,10 @@ public class ListaSimple<T> implements Iterable<T> {
      * @return item contenido en el nodo eliminado
      * @throws Exception
      */
-    public T removeHead() throws Exception {
+    public Comparable removeHead() throws Exception {
         if (first == null)
             throw new Exception("Lista vacia");
-        T i = first.item;
+        Comparable i = first.item;
         first = first.sig;
         n--;
         return i;
@@ -66,14 +66,14 @@ public class ListaSimple<T> implements Iterable<T> {
      * Obtener un iterador para la lista
      */
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<Comparable> iterator() {
         return new IteradorLista();
     }
 
     /**
      * Implementacion del iterador para la lista simple
      */
-    private class IteradorLista implements Iterator<T> {
+    private class IteradorLista implements Iterator<Comparable> {
 
         private Nodo pos = first;
 
@@ -83,8 +83,8 @@ public class ListaSimple<T> implements Iterable<T> {
         }
 
         @Override
-        public T next() {
-            T i = pos.item;
+        public Comparable next() {
+            Comparable i = pos.item;
             pos = pos.sig;
             return i;
         }
@@ -96,8 +96,8 @@ public class ListaSimple<T> implements Iterable<T> {
      */
 
     /** Remueve el ultimo elemento de la lista */
-    public T removeLast() throws Exception {
-        T item = null;
+    public Comparable removeLast() throws Exception {
+        Comparable item = null;
         int cont = 0;
         Nodo x = new Nodo();
         if (last != null) {
@@ -119,7 +119,7 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** Agregar un elemento al final de la lista */
-    public void addLast(T item) {
+    public void addLast(Comparable item) {
         Nodo x = new Nodo();
         x.item = item;
         x.sig = null;
@@ -132,7 +132,7 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** Obtener el item en la i-ésima posición de la lista */
-    public T get(int i) throws Exception {
+    public Comparable get(int i) throws Exception {
         if (i < n && i >= 0) {
             int cont = 0;
             Nodo x = new Nodo();
@@ -152,7 +152,7 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** Insertar un item en la i-ésima posición de la lista */
-    public void insert(int i, T dato) throws Exception {
+    public void insert(int i, Comparable dato) throws Exception {
         int cont = 0;
         Nodo nuevo = new Nodo();
         Nodo x = new Nodo();
@@ -182,7 +182,7 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** remueve el item de la i-ésima posición de la lista */
-    public T remove(int i) throws Exception {
+    public Comparable remove(int i) throws Exception {
         int cont = 0;
         Nodo x = new Nodo();
         x = first;
@@ -207,8 +207,8 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** Obtener una nueva ListaSimple con todos los items en orden inverso */
-    public ListaSimple<T> invert() throws Exception {
-        ListaSimple<T> x = new ListaSimple<T>();
+    public ListaSimple<Comparable> invert() throws Exception {
+        ListaSimple<Comparable> x = new ListaSimple<Comparable>();
         for (int i = 0; i < n; i++) {
             x.addHead(get(i));
         }
@@ -216,8 +216,8 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
     /** Dividir una lista en dos mitades */
-    public ListaSimple<T>[] splitList() throws Exception {
-        ListaSimple<T>[] split = new ListaSimple[2];
+    public ListaSimple<Comparable>[] splitList() throws Exception {
+        ListaSimple<Comparable>[] split = new ListaSimple[2];
         int div = (n - 1) / 2;
         for (int i = 0; i <= div; i++) {
             split[0].addLast(get(i));
@@ -228,8 +228,8 @@ public class ListaSimple<T> implements Iterable<T> {
         return split;
     }
 
-    public ListaSimple<T> fusionar(ListaSimple<T> a, ListaSimple<T> b) {
-        ListaSimple<T> Temp = new ListaSimple<T>();
+    public ListaSimple<Comparable> fusionar(ListaSimple<Comparable> a, ListaSimple<Comparable> b) {
+        ListaSimple<Comparable> Temp = new ListaSimple<Comparable>();
         boolean t = true;
         Nodo ia = a.first;
         Nodo ib = b.first;
@@ -239,7 +239,7 @@ public class ListaSimple<T> implements Iterable<T> {
             if () {
                 Temp.addLast(ia.item);
                 ia = ia.next;
-            } else if (ia.item >= ib.item) {
+            } else if (less(ia.item,ib.item)) {
                 Temp.addLast(ib.item);
                 ib = ib.next;
             }
@@ -256,6 +256,10 @@ public class ListaSimple<T> implements Iterable<T> {
             }
         }
         return Temp;
+    }
+
+    private boolean less(Comparable item, Comparable item2) {
+        return false;
     }
 
     // public boolean isSorted() throws Exception {
