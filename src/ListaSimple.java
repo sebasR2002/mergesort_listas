@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import edu.princeton.cs.algs4.*;
 
 public class ListaSimple<T> implements Iterable<T> {
 
@@ -175,7 +176,6 @@ public class ListaSimple<T> implements Iterable<T> {
                     x = x.sig;
                     cont++;
                 }
-
             }
         } else
             throw new Exception("posicion fuera de rango");
@@ -228,15 +228,47 @@ public class ListaSimple<T> implements Iterable<T> {
         return split;
     }
 
-    public ListaSimple<T>[] splitList(ListaSimple<T> list) throws Exception {
-        ListaSimple<T>[] split = new ListaSimple[2];
-        int div = (n - 1) / 2;
-        for (int i = 0; i <= div; i++) {
-            split[0].addLast(get(i));
+    public ListaSimple<T> fusionar(ListaSimple<T> a, ListaSimple<T> b) {
+        ListaSimple<T> Temp = new ListaSimple<T>();
+        boolean t = true;
+        Nodo ia = a.first;
+        Nodo ib = b.first;
+
+        while (t) {
+
+            if () {
+                Temp.addLast(ia.item);
+                ia = ia.next;
+            } else if (ia.item >= ib.item) {
+                Temp.addLast(ib.item);
+                ib = ib.next;
+            }
+
+            else {
+                Temp.addLast(ia.item);
+                ia = ia.next;
+                Temp.addLast(ib.item);
+                ib = ib.next;
+            }
+
+            if (ia.sig == null) {
+
+            }
         }
-        for (int i = 0; i > div && i < n; i++) {
-            split[1].addHead(get(i));
-        }
-        return split;
+        return Temp;
     }
+
+    // public boolean isSorted() throws Exception {
+    // if (n == 0) {
+    // throw new Exception("La lista no tiene items");
+    // } else if (n == 1) {
+    // return true;
+    // } else {
+    // Nodo n = first;
+    // while(n.sig != null){
+
+    // if(n.item <= n.sig.item));
+    // }
+    // }
+    // }
 }
