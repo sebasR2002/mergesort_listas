@@ -227,4 +227,16 @@ public class ListaSimple<T> implements Iterable<T> {
         }
         return split;
     }
+
+    public ListaSimple<T>[] splitList(ListaSimple<T> list) throws Exception {
+        ListaSimple<T>[] split = new ListaSimple[2];
+        int div = (n - 1) / 2;
+        for (int i = 0; i <= div; i++) {
+            split[0].addLast(get(i));
+        }
+        for (int i = 0; i > div && i < n; i++) {
+            split[1].addHead(get(i));
+        }
+        return split;
+    }
 }
