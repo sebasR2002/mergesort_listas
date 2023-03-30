@@ -238,17 +238,17 @@ public class ListaSimple<Comparable> implements Iterable<Comparable> {
 
             if () {
                 Temp.addLast(ia.item);
-                ia = ia.next;
+                ia = ia.sig;
             } else if (less(ia.item,ib.item)) {
                 Temp.addLast(ib.item);
-                ib = ib.next;
+                ib = ib.sig;
             }
 
             else {
                 Temp.addLast(ia.item);
-                ia = ia.next;
+                ia = ia.sig;
                 Temp.addLast(ib.item);
-                ib = ib.next;
+                ib = ib.sig;
             }
 
             if (ia.sig == null) {
@@ -259,7 +259,7 @@ public class ListaSimple<Comparable> implements Iterable<Comparable> {
     }
 
     private boolean less(Comparable item, Comparable item2) {
-        return false;
+        return less(item, item2);
     }
 
     // public boolean isSorted() throws Exception {
