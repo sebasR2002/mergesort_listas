@@ -15,6 +15,16 @@ public class ListaSimple<T> implements Iterable<T> {
     private Nodo last = null;
     private int n = 0;
 
+    // accesor de firts
+    public Nodo GetFirst() {
+        return first;
+    }
+
+    // accesor de last
+    public Nodo GetLast() {
+        return last;
+    }
+
     /**
      * Agregar un item a la cabeza de la lista
      * 
@@ -84,9 +94,9 @@ public class ListaSimple<T> implements Iterable<T> {
 
         @Override
         public T next() {
-            Comparable i = pos.item;
+            T i = (T) pos.item;
             pos = pos.sig;
-            return (T) i;
+            return i;
         }
 
     }
@@ -121,12 +131,14 @@ public class ListaSimple<T> implements Iterable<T> {
     /** Agregar un elemento al final de la lista */
     public void addLast(Comparable item) {
         Nodo x = new Nodo();
+        if (last == null) {
+            addHead(item);
+            return;
+        }
         x.item = item;
         x.sig = null;
         last.sig = x;
         x = last;
-        if (first == null)
-            first = last;
 
         n++;
     }
@@ -218,11 +230,13 @@ public class ListaSimple<T> implements Iterable<T> {
     /** Dividir una lista en dos mitades */
     public ListaSimple<T>[] splitList() throws Exception {
         ListaSimple<T>[] split = new ListaSimple[2];
+        split[0] = new ListaSimple<T>();
+        split[1] = new ListaSimple<T>();
         int div = (n - 1) / 2;
         for (int i = 0; i <= div; i++) {
-            split[0].addLast(get(i));
+            split[0].addHead(get(i));
         }
-        for (int i = 0; i > div && i < n; i++) {
+        for (int i = div + 1; i > div && i < n; i++) {
             split[1].addHead(get(i));
         }
         return split;
@@ -233,8 +247,9 @@ public class ListaSimple<T> implements Iterable<T> {
         boolean t = true;
         Nodo ia = (ListaSimple<T>.Nodo) a.first;
         Nodo ib = (ListaSimple<T>.Nodo) b.first;
+        int hi;
 
-        while (t) {
+        for (int i = 0; i < a.size() + b.size(); i++) {
 
             if (less(ib.item, ia.item)) {
                 Temp.addLast(ia.item);
@@ -258,21 +273,23 @@ public class ListaSimple<T> implements Iterable<T> {
         return Temp;
     }
 
-    private boolean less(Comparable item, Comparable item2) {
+    public boolean less(Comparable item, Comparable item2) {
         return item.compareTo(item2) < 0;
     }
 
-    // public boolean isSorted() throws Exception {
-    // if (n == 0) {
-    // throw new Exception("La lista no tiene items");
-    // } else if (n == 1) {
-    // return true;
-    // } else {
-    // Nodo n = first;
-    // while(n.sig != null){
+    public boolean isSorted() throws Exception {
+        if (n == 0) {
+            throw new Exception("La lista no tiene items");
+        } else if (n == 1) {
+            return true;
+        } else {
+            Nodo n = first;
+            while (n.sig != null) {
 
-    // if(n.item <= n.sig.item));
-    // }
-    // }
-    // }
+                if (!less(n.item, n.sig.item))
+                    return false;
+            }
+            return true;
+        }
+    }
 }
