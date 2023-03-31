@@ -1,6 +1,5 @@
 
 import edu.princeton.cs.algs4.*;
-import edu.princeton.cs.algs4.StdOut;
 
 public class Taller3 {
     public static void main(String[] args) throws Exception {
@@ -19,14 +18,14 @@ public class Taller3 {
         }
 
         StdOut.println("el ultimo es " + aux.GetLast().item);
-        StdOut.println("el primero es  " + aux.GetFirst().item);
+        StdOut.println("el primero es " + aux.GetFirst().item);
         StdOut.println("el tamaño es " + aux.size());
         StdOut.println("el ultimo es con get es " + aux.get(aux.size() - 1));
 
         ListaSimple<Comparable>[] aux1 = new ListaSimple[2];
 
         aux1 = aux.splitList();
-        // ListaSimple<Comparable> b = sort(aux);
+
         StdOut.println("la lista split 0 es ");
         for (Comparable i : aux1[0]) {
             StdOut.println(i);
@@ -46,7 +45,7 @@ public class Taller3 {
         }
         StdOut.println("la lista esta ordenada " + b.isSorted());
         StdOut.println("la lista esta ordenada " + aux.isSorted());
-
+        assert (aux.isSorted());
     }
 
     public static ListaSimple<Comparable> sort(ListaSimple<Comparable> a) throws Exception {

@@ -257,7 +257,7 @@ public class ListaSimple<T> implements Iterable<T> {
         int i = 0, j = 0;
 
         while (i < a.size() && j < b.size()) {
-            StdOut.println(ia.item + " " + ib.item);
+
             if (less(ia.item, ib.item)) {
 
                 Temp.addLast(ia.item);
@@ -307,4 +307,9 @@ public class ListaSimple<T> implements Iterable<T> {
             return true;
         }
     }
+
+    public static void main(String[] args) throws Exception {
+
+    }
+
 }
