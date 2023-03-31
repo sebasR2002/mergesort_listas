@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import edu.princeton.cs.algs4.*;
 
 public class ListaSimple<T> implements Iterable<T> {
 
@@ -310,6 +309,58 @@ public class ListaSimple<T> implements Iterable<T> {
 
     public static void main(String[] args) throws Exception {
 
+        // Crea lista principal
+        ListaSimple<Comparable> aux = new ListaSimple<>();
+
+        // Añade a la cola el item 19
+        aux.addLast(19);
+
+        // Si el metodo funciona, tanto el primer item como el ultimo será igual a 19
+        assert (aux.GetFirst().item.compareTo(19) == 0);
+        assert (aux.GetLast().item.compareTo(19) == 0);
+
+        // Añade mas datos a la cabeza
+        aux.addHead(18);
+        aux.addHead(15);
+        aux.addHead(11);
+        aux.addHead(3);
+        aux.addHead(13);
+
+        // Verifica que la cabeza sea el ultimo dato añadido
+        assert (aux.GetFirst().item.compareTo(13) == 0);
+
+        // Añade un dato extra para verificar de nuevo
+        aux.addHead(20);
+
+        assert (aux.GetFirst().item.compareTo(20) == 0);
+
+        // Verifica getLast
+        assert (aux.GetLast().item.compareTo(19) == 0);
+
+        // Size correcto
+        assert (aux.size() == 7);
+
+        // Verifica el funcionamiento de el get especifico
+        assert (aux.get(3).compareTo(13) == 0);
+
+        // Nueva lista para almacenar el split
+        ListaSimple<Comparable>[] aux1 = new ListaSimple[2];
+
+        aux1 = aux.splitList();
+
+        // Verifica que la particion 1 se hiciera correctamente
+        assert (aux1[0].GetFirst().item.compareTo(20) == 0);
+        assert (aux1[0].GetLast().item.compareTo(11) == 0);
+
+        // Verifica que la particion 2 se hiciera correctamente
+        assert (aux1[1].GetFirst().item.compareTo(15) == 0);
+        assert (aux1[1].GetLast().item.compareTo(19) == 0);
+
+        // Variable b en que se almacena el ordenar
+        ListaSimple<Comparable> b = Taller3.sort(aux);
+
+        // Verifica que tanto como el ordenamiento, como el isSorted funcionan
+        assert (b.isSorted());
     }
 
 }

@@ -37,7 +37,21 @@ class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person o) {
-        // TODO Auto-generated method stub
+        if (this.getApellidos().compareTo(o.getApellidos()) > 0)
+            return 1;
+
+        else if (this.getApellidos().compareTo(o.getApellidos()) < 0)
+            return -1;
+
+        else if (this.getApellidos().compareTo(o.getApellidos()) == 0) {
+
+            if (this.getNombres().compareTo(o.getNombres()) > 0)
+                return 1;
+
+            else if (this.getNombres().compareTo(o.getNombres()) < 0)
+                return -1;
+        }
+        
         return 0;
     }
 
