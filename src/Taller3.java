@@ -44,6 +44,8 @@ public class Taller3 {
             StdOut.println(i);
 
         }
+        StdOut.println("la lista esta ordenada " + b.isSorted());
+        StdOut.println("la lista esta ordenada " + aux.isSorted());
 
     }
 

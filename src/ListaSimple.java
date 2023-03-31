@@ -199,6 +199,12 @@ public class ListaSimple<T> implements Iterable<T> {
         Nodo x = new Nodo();
         x = first;
         Comparable item = null;
+        if (i == n - 1) {
+            return removeLast();
+        }
+        if (i == 0) {
+            return removeHead();
+        }
         if (i < n && i >= 0) {
 
             while (cont <= i - 1) {
@@ -244,7 +250,6 @@ public class ListaSimple<T> implements Iterable<T> {
 
     public ListaSimple<Comparable> fusionar(ListaSimple<T> a, ListaSimple<T> b) {
         ListaSimple<Comparable> Temp = new ListaSimple<Comparable>();
-        boolean t = true;
         Nodo ia = new Nodo();
         Nodo ib = new Nodo();
         ia = a.GetFirst();
@@ -297,6 +302,7 @@ public class ListaSimple<T> implements Iterable<T> {
 
                 if (!less(n.item, n.sig.item))
                     return false;
+                n = n.sig;
             }
             return true;
         }
