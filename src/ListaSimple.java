@@ -138,7 +138,7 @@ public class ListaSimple<T> implements Iterable<T> {
         x.item = item;
         x.sig = null;
         last.sig = x;
-        x = last;
+        last = x;
 
         n++;
     }
@@ -234,41 +234,50 @@ public class ListaSimple<T> implements Iterable<T> {
         split[1] = new ListaSimple<T>();
         int div = (n - 1) / 2;
         for (int i = 0; i <= div; i++) {
-            split[0].addHead(get(i));
+            split[0].addLast(get(i));
         }
         for (int i = div + 1; i > div && i < n; i++) {
-            split[1].addHead(get(i));
+            split[1].addLast(get(i));
         }
         return split;
     }
 
-    public ListaSimple<Comparable> fusionar(ListaSimple<Comparable> a, ListaSimple<Comparable> b) {
+    public ListaSimple<Comparable> fusionar(ListaSimple<T> a, ListaSimple<T> b) {
         ListaSimple<Comparable> Temp = new ListaSimple<Comparable>();
         boolean t = true;
-        Nodo ia = (ListaSimple<T>.Nodo) a.first;
-        Nodo ib = (ListaSimple<T>.Nodo) b.first;
-        int hi;
+        Nodo ia = new Nodo();
+        Nodo ib = new Nodo();
+        ia = a.GetFirst();
+        ib = b.GetFirst();
+        int i = 0, j = 0;
 
-        for (int i = 0; i < a.size() + b.size(); i++) {
+        while (i < a.size() && j < b.size()) {
+            StdOut.println(ia.item + " " + ib.item);
+            if (less(ia.item, ib.item)) {
 
-            if (less(ib.item, ia.item)) {
                 Temp.addLast(ia.item);
                 ia = ia.sig;
-            } else if (less(ia.item, ib.item)) {
+                i++;
+            } else if (less(ib.item, ia.item)) {
                 Temp.addLast(ib.item);
                 ib = ib.sig;
+                j++;
             }
 
-            else {
-                Temp.addLast(ia.item);
-                ia = ia.sig;
-                Temp.addLast(ib.item);
-                ib = ib.sig;
-            }
+        }
+        while (i < a.size()) {
 
-            if (ia.sig == null) {
+            Temp.addLast(ia.item);
+            ia = ia.sig;
+            i++;
 
-            }
+        }
+        while (j < b.size()) {
+
+            Temp.addLast(ib.item);
+            ib = ib.sig;
+            j++;
+
         }
         return Temp;
     }
