@@ -51,7 +51,7 @@ class Person implements Comparable<Person> {
             else if (this.getNombres().compareTo(o.getNombres()) < 0)
                 return -1;
         }
-        
+
         return 0;
     }
 
